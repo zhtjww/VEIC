@@ -8,7 +8,7 @@ BASE_WEIGHT=voc_base_ckpt/defrcn_det_r101_base${SPLIT_ID}/model_reset_surgery.pt
 
 for repeat in 0
 do
-    for shot in 1 2 3 5
+    for shot in 1 2 3 5 10
     do
         for seed in 0
         do
