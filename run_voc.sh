@@ -8,7 +8,7 @@ BASE_WEIGHT=voc_base_ckpt/defrcn_det_r101_base${SPLIT_ID}/model_reset_surgery.pt
 
 for repeat in 0
 do
-    for shot in 1 2 3 5 10
+    for shot in 1 2 3 5
     do
         for seed in 0
         do
@@ -24,8 +24,8 @@ do
                 python3 main.py --num-gpus 8 --config-file ${CONFIG_PATH}                            \
                     --opts MODEL.WEIGHTS ${BASE_WEIGHT} OUTPUT_DIR ${OUTPUT_DIR}                     \
                            TEST.PCB_MODELPATH ${IMAGENET_PRETRAIN_TORCH} VOC_SPLIT ${SPLIT_ID}
-                rm ${CONFIG_PATH}
-                rm ${OUTPUT_DIR}/model_final.pth
+#                rm ${CONFIG_PATH}
+#                rm ${OUTPUT_DIR}/model_final.pth
             fi
         done
     done
