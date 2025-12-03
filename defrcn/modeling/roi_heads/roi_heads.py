@@ -314,12 +314,6 @@ class Res5ROIHeads(ROIHeads):
             sampling_ratio=sampling_ratio,
             pooler_type=pooler_type,
         )
-        self.roi_pooler_clip = ROIPooler(
-            output_size=(14, 14),
-            scales=(1 / 16,),
-            sampling_ratio=0,
-            pooler_type="ROIAlignV2"
-        )
         self.roi_cropper_clip = ROIPooler(
             output_size=(224, 224),
             scales=(1 / 1,),
