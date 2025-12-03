@@ -10,7 +10,7 @@
 * CUDA == 10.1
 
 ## Data Preparation
-1. Please follow the instructions in [DeFRCN](https://github.com/er-muyue/DeFRCN) to prepare VOC2007, VOC2012, and vocsplit.
+1. Please follow the instructions in [DeFRCN](https://github.com/er-muyue/DeFRCN) to prepare VOC2007, VOC2012, vocsplit, coco, cocosplit.
 2. Copy all images from VOC2007 and VOC2012 into the `VEIC_data/VOCImages` directory:
     ```bash
     python -m datasets.VEIC_data.copy_imgs
@@ -18,10 +18,12 @@
 
 ## Weights Preparation
 1. Please follow the instructions in DeFRCN to download imagenet pretrain weights.
-2. We adopt the base-training weights provided by DeFRCN. Please download them and place them in the `voc_base_ckpt` folder. 
+2. We adopt the base-training weights provided by DeFRCN. Please download them and place them in the `voc_base_ckpt`, `coco_base_ckpt` folder. 
 3. The directory structure should be organized as follows:
     ```
       ...
+      defrcn
+      tools
       ImageNetPretrained
         |--resnet101-5d3b4d8f.pth
       voc_base_ckpt
@@ -30,6 +32,9 @@
         |-- defrcn_det_r101_base2
         |----model_reset_surgery.pth
         |-- defrcn_det_r101_base3
+        |----model_reset_surgery.pth
+      coco_base_ckpt
+        |-- defrcn_det_r101_base
         |----model_reset_surgery.pth
       ...
     ```
@@ -40,6 +45,11 @@
   ```
   bash run_voc.sh EXP_NAME SPLIT_ID 
   example: bash run_voc.sh VEIC 1
+  ```
+* To train and evaluate the model on MS COCO, run the following command:
+  ```
+  bash run_coco.sh EXP_NAME
+  example: bash run_coco.sh VEIC
   ```
 ## Acknowledgement
 This repo is developed based on [DeFRCN](https://github.com/er-muyue/DeFRCN), [Detectron2](https://github.com/facebookresearch/detectron2), [MFDC](https://github.com/shuangw98/MFDC) and [CLIP](https://github.com/openai/CLIP). We thank the authors for their valuable contributions.

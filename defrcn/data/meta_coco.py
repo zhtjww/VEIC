@@ -12,7 +12,7 @@ __all__ = ["register_meta_coco"]
 
 
 def load_coco_json(json_file, image_root, metadata, dataset_name):
-    is_shots = "shot" in dataset_name  # few-shot
+    is_shots = "shot" in dataset_name and 'explict' not in dataset_name and 'implicit' not in dataset_name
     if is_shots:
         imgid2info = {}
         shot = dataset_name.split('_')[-2].split('shot')[0]

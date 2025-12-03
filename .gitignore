@@ -30,8 +30,6 @@ wheels/
 
 checkpoints/
 _DEL_/
-datasets/VOC2007/
-datasets/VOC2012/
-datasets/vocsplit/
-datasets/VEIC_data/VOCImages/
+ImageNetPretrained/
 voc_base_ckpt/
+coco_base_ckpt/

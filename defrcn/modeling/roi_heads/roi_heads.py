@@ -367,11 +367,11 @@ class Res5ROIHeads(ROIHeads):
 
         loss_extra = {}
         fewshot_len = int(len(classes) * 0.75)
-
         classes = torch.cat(classes[fewshot_len:], dim=0)
-        gt_one_hot = F.one_hot(classes, 21).float()
-        base_indices = torch.nonzero(classes < 15, as_tuple=False).squeeze(-1)  # for voc only
-        novel_indices = torch.nonzero(classes >= 15, as_tuple=False).squeeze(-1)  # for voc only
+        gt_one_hot = F.one_hot(classes, clip_text_fea.size(0)).float()
+        all_indices = torch.arange(classes.size(0)).to(classes.device)
+        base_indices = all_indices[::2]
+        novel_indices = all_indices[1::2]
 
         # Process images through CLIP
         crop_img = self.roi_cropper_clip([images[fewshot_len:, [2, 1, 0]]], boxes[fewshot_len:])

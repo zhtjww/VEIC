@@ -21,6 +21,16 @@ def register_all_coco(root="datasets"):
             for seed in range(10):
                 name = "coco14_trainval_{}_{}shot_seed{}".format(prefix, shot, seed)
                 METASPLITS.append((name, "coco/trainval2014", ""))
+    for prefix in ["explicit", "implicit"]:
+        for shot in [1, 2, 3, 5, 10, 30]:
+            if prefix == "explicit":
+                name = "pcoco_explict_{}shot_seed0".format(shot)
+                METASPLITS.append((name, "coco/trainval2014",
+                                   "VEIC_data/COCO_label/explicit/explicit_coco_{}shot_top80.json".format(shot)))
+            elif prefix == "implicit":
+                name = "pcoco_implicit_{}shot_seed0".format(shot)
+                METASPLITS.append((name, "coco/trainval2014",
+                                   "VEIC_data/COCO_label/implicit/implicit_coco_{}shot_top20.json".format(shot)))
 
     for name, imgdir, annofile in METASPLITS:
         register_meta_coco(
@@ -40,13 +50,13 @@ def register_all_pvoc(root="datasets"):
             for split in [1, 2, 3]:
                 if prefix == "explicit":
                     name = "pvoc_explict_split{}_{}shot_seed0".format(split, shot)
-                    json_file = "VEIC_data/explicit/split{}/explicit_split{}_{}shot_top80.json".format(
+                    json_file = "VEIC_data/VOC_label/explicit/split{}/explicit_split{}_{}shot_top80.json".format(
                         split, split, shot)
                     METASPLITS.append((name, "VEIC_data/VOCImages", json_file, split))
                 elif prefix == "implicit":
                     for year in ['07', '12']:
                         name = "pvoc_implicit_{}_split{}_{}shot_seed0".format(year, split, shot)
-                        json_file = "VEIC_data/implicit/split{}/implicit_{}_split{}_{}shot_top20.json".format(
+                        json_file = "VEIC_data/VOC_label/implicit/split{}/implicit_{}_split{}_{}shot_top20.json".format(
                             split, year, split, shot)
                         METASPLITS.append((name, "VEIC_data/VOCImages", json_file, split))
 
